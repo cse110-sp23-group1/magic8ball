@@ -10,7 +10,7 @@
       <img id="magic-ball" src="CRAIYONAI8BALL.png" alt="Magic 8 Ball">
       <form>
         <br><br><br><br>
-        <input type="text" id="question" placeholder="Ask your question...">
+        <input type="text" id="question" placeholder="Ask your question..." onkeypress="handleKeyPress(event)">
         <button id="submit" type="button" onclick="shake()">Submit</button>
       </form>
       <div id="answer"></div>

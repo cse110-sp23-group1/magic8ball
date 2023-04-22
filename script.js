@@ -1,3 +1,9 @@
+function handleKeyPress(e) {
+  if (e.key === 'Enter') {
+    shake();
+  }
+}
+
 function shake() {
     let magicBall = document.getElementById('magic-ball');
     magicBall.style.transform = 'translateX(40px) rotate(40deg)';
