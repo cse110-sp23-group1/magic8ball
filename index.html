@@ -7,8 +7,12 @@
   <body>
     <div class="container">
       <h1>Magic 8 Ball</h1>
-      <img id="magic-ball" src="CRAIYONAI8BALL.png" alt="Magic 8 Ball" width="300" height="300">
-      <button onclick="shake()">Shake</button>
+      <img id="magic-ball" src="CRAIYONAI8BALL.png" alt="Magic 8 Ball">
+      <form>
+        <br><br><br><br>
+        <input type="text" id="question" placeholder="Ask your question...">
+        <button id="submit" type="button" onclick="shake()">Submit</button>
+      </form>
       <div id="answer"></div>
     </div>
     <script src="script.js"></script>

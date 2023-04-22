@@ -1,24 +1,38 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
+  align-items: center;
+  margin-top: 2rem;
 }
 
 h1 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  font-family: 'Abracadabra', cursive;
+  color:#EF8B00;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
 }
 
-img {
-  width: 300px;
-  height: 300px;
-  margin-bottom: 2rem;
-  transition: transform 1s ease-in-out;
+#magic-ball {
+  width: 400px;
+  height: 400px;
+  margin-bottom: 1.5rem;
 }
 
-button {
+#question {
+  width: 400px;
+  height: 40px;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  background-color: rgb(100, 95, 95);
+}
+#question:active {
+  border: black;
+}
+#submit {
   padding: 1rem 2rem;
   font-size: 1.2rem;
   background-color: #EF8B00;
@@ -29,16 +43,30 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #0069d9;
+#submit:hover {
+  background-color: #d77d00;
 }
 
 #answer {
+  font-family: 'Cantarell', sans-serif;
   font-size: 2rem;
   font-weight: bold;
-  margin-top: 2rem;
-  text-align: center;
+  color: #EF8B00;
+  margin-top: 1.5rem;
+  animation: appear 0.5s ease;
 }
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 body {
   background-color: black;
 }

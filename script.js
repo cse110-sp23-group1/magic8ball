@@ -54,6 +54,6 @@ function shake() {
       let answer = answers[Math.floor(Math.random() * answers.length)];
       let answerBox = document.getElementById('answer');
       answerBox.textContent = answer;
-    }, 1500);
+    }, 1750);
   }
   
