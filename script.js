@@ -1,3 +1,9 @@
+function handleKeyPress(e) {
+  if (e.key === 'Enter') {
+    shake();
+  }
+}
+
 function shake() {
     let magicBall = document.getElementById('magic-ball');
     magicBall.style.transform = 'translateX(40px) rotate(40deg)';
@@ -54,6 +60,6 @@ function shake() {
       let answer = answers[Math.floor(Math.random() * answers.length)];
       let answerBox = document.getElementById('answer');
       answerBox.textContent = answer;
-    }, 1500);
+    }, 1750);
   }
   
