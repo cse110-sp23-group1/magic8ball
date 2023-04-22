@@ -60,6 +60,85 @@ function shake() {
       let answer = answers[Math.floor(Math.random() * answers.length)];
       let answerBox = document.getElementById('answer');
       answerBox.textContent = answer;
+
+      if (answer === 'It is certain') {
+        let audio = new Audio('audio/It is certain.mp3');
+        audio.play();
+      }
+      if (answer === 'It is decidedly so') {
+        let audio = new Audio('audio/It is decidedly so.mp3');
+        audio.play();
+      }
+      if (answer === 'Without a doubt') {
+        let audio = new Audio('audio/Without a doubt.mp3');
+        audio.play();
+      }
+      if (answer === 'Yes, definitely') {
+        let audio = new Audio('audio/Yes defenitely.mp3');
+        audio.play();
+      }
+      if (answer === 'You may rely on it') {
+        let audio = new Audio('audio/You may rely on it.mp3');
+        audio.play();
+      }
+      if (answer === 'As I see it, yes') {
+        let audio = new Audio('audio/As I see it, yes.mp3');
+        audio.play();
+      }
+      if (answer === 'Most likely') {
+        let audio = new Audio('audio/Most likely.mp3');
+        audio.play();
+      }
+      if (answer === 'Yes') {
+        let audio = new Audio('audio/Yes.mp3');
+        audio.play();
+      }
+      if (answer === 'Outlook good') {
+        let audio = new Audio('audio/Outlook good.mp3');
+        audio.play();
+      }
+      if (answer === 'Signs point to yes') {
+        let audio = new Audio('audio/Signs point to yes.mp3');
+        audio.play();
+      }
+      if (answer === 'Reply hazy, try again') {
+        let audio = new Audio('audio/Reply hazy, try again.mp3');
+        audio.play();
+      }
+      if (answer === 'Ask again later') {
+        let audio = new Audio('audio/Ask again later.mp3');
+        audio.play();
+      }
+      if (answer === 'Better not tell you now') {
+        let audio = new Audio('audio/Better not tell you now.mp3');
+        audio.play();
+      }
+      if (answer === 'Cannot predict now') {
+        let audio = new Audio('audio/Cannot predict now.mp3');
+        audio.play();
+      }
+      if (answer === 'Concentrate and ask again') {
+        let audio = new Audio('audio/Concentrate and ask again.mp3');
+        audio.play();
+      }
+      if (answer === 'Don\'t count on it') {
+        let audio = new Audio('audio/Don\'t count on it.mp3');
+        audio.play();
+      }
+      if (answer === 'Outlook not so good') {
+        let audio = new Audio('audio/Outlook not so good.mp3');
+        audio.play();
+      }
+      if (answer === 'My sources say no') {
+        let audio = new Audio('audio/My sources say no.mp3');
+        audio.play();
+      }
+      if (answer === 'Very doubtful') {
+        let audio = new Audio('audio/Very doubtful.mp3');
+        audio.play();
+      }
+
+
     }, 1750);
   }
   
