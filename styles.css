@@ -27,7 +27,7 @@ h1 {
   border: none;
   border-radius: 5px;
   margin-bottom: 1.5rem;
-  background-color: rgb(100, 95, 95);
+  background-color: whitesmoke;
 }
 #question:active {
   border: black;
@@ -58,4 +58,8 @@ h1 {
 
 body {
   background-color: black;
+}
+
+::placeholder {
+  color: black;
 }
