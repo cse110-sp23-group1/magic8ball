@@ -52,43 +52,64 @@ function setCharacter(character='johnny'){
 /**
  * sets up / cleans up for shaking in promiseShakeTransformations
  * 
- * 'easyRider' is in magic.css
- * 
  * @param {element} element (to be set/reset for shaking)
  */
 function shakeSetup(element){
-    element.classList.add('easyRider');
+    // staged
 }
 function shakeTeardown(element){
-    element.classList.remove('easyRider');
     element.style.removeProperty('transform');
 }
 
 /**
- * helper: given a transformation and an element to apply it to,
- * returns a promise to resolve when the transition completes
+ * Apply a transformation to the given element.
  * 
- * @param {element} element (what to apply the shake to)
- * @param {string} t (the transform values to use)
- * @returns {promise} (a promise to resolve once the shake transition ends)
+ * @param {element} element
+ * @param {string} transform
  */
-const applyTransitionTranform = (element, t) => {
+function applyTransform(element, transform) {
+    element.style.transform = transform;
+}
+
+/**
+ * Set a timeout for applying a transformation to an element.
+ * 
+ * @param {element} element (the thing)
+ * @param {string} transform (to do this to)
+ * @param {number} duration (for this long)
+ * @returns {Promise}
+ */
+function setTimeoutForTransform(element, transform, duration) {
     return new Promise((resolve) => {
-        element.addEventListener("transitionend", resolve, { once: true });
-        element.style.transform = t;
+        setTimeout(() => {
+            applyTransform(element, transform);
+            resolve();
+        }, duration);
     });
 }
 
 /**
- * given an element, shakes it
+ * Generate an array of shake promises.
  * 
- * @param {element} element (what to shake)
- * @returns a promise resolving when transforms complete
+ * @param {element} element (a thing to promise to shake)
+ * @param {Array} shakeTransformations (how to shake)
+ * @returns {Array<Promise>} (promises to do those shakes)
+ */
+function generateShakePromises(element, shakeTransformations) {
+    return shakeTransformations.map(({ t, d }) =>
+        setTimeoutForTransform(element, t, d)
+    );
+}
+
+/**
+ * Given a thing to shake, starts shaking and promises to finish
+ * 
+ * @param {element} element (expected to be the 8 ball object)
+ * @returns a promise that all the shaking will be done
  */
 async function promiseShakeTransformations(element) {
-    for (const { t } of shakeTransformations) {
-      await applyTransitionTranform(element, t);
-    }
+    const shakePromises = generateShakePromises(element, shakeTransformations);
+    return Promise.all(shakePromises);
 }
 
 /**
@@ -100,21 +121,51 @@ function randomChoice (range){
 }
 
 /**
- * given an answer index, stops currently playing answer
- * and starts the new one
+ * stops currently playing answer
+ */
+function stopCurrentAnswer() {
+    if (answerAudioPlaying) {
+        answerAudioPlaying.pause()
+    }
+}
+
+/**
+ * given an audio, sets its position to 0.
+ * this is necessary because we use `pause` for compatibility
+ * and it (`pause`) maintains the position
+ * 
+ * @param {audio} audio 
+ */
+function resetAudioPosition(audio){
+    audio.currentTime = 0;
+}
+
+/**
+ * given an line, stops currently playing answer gets the next one
+ * and plays it
  * 
  * @param {string} line is what to look for in character voicelines
  * in answerAudio.length range
  */
 function playAnswerAudio(line){
-    if (answerAudioPlaying) {
-        answerAudioPlaying.pause()
-    }
+    stopCurrentAnswer();
 
-    let newAnswerAudio = getAudio(config.characters[currentCharacter].voiceLines[line])
-    newAnswerAudio.currentTime = 0;
-    newAnswerAudio.play();
-    answerAudioPlaying = newAnswerAudio;
+    let answerAudio = getFreshVoiceLine(line);
+    answerAudio.play();
+
+    answerAudioPlaying = answerAudio;
+}
+/**
+ * given a line to play, gets it, resets it, and gives it back
+ * 
+ * @param {string} line (the line to find voice for)
+ * @returns {audio}
+ */
+function getFreshVoiceLine(line){
+    let voiceLine = getVoiceLineFromText(line);
+    let freshAnswerAudio = getAudio(voiceLine);
+    resetAudioPosition(freshAnswerAudio);
+    return freshAnswerAudio
 }
 
 /**
@@ -135,23 +186,49 @@ function getTextLineFromIndex(index){
  * @returns {string} the voice line location
  */
 function getVoiceLineFromText(line, character=currentCharacter){
-    return config.characters[character][line]
+    const voiceLineLocation = config.characters[character].voiceLines[line]
+    return voiceLineLocation
 }
 
 /**
- * given an element to pass the answer to, picks an answer off
- * the answer list, plays its associated audio, and sends it off
+ * Get a random answer index from the config.
  * 
+ * @returns {number} Random index
+ */
+function getRandomAnswerIndex() {
+    return randomChoice(config.textAnswers.length);
+}
+
+/**
+ * Generate a random answer from the config.
  * 
+ * @returns {string} Random answer
+ */
+function selectRandomAnswer() {
+    const randomIndex = getRandomAnswerIndex();
+    const textLine = getTextLineFromIndex(randomIndex);
+    return textLine
+}
+
+/**
+ * Update the answer destination with the given answer.
  * 
- * @param {element} answerDestination (what to give the text line to)
+ * @param {element} answerDestination
+ * @param {string} answer
+ */
+function updateAnswerDestination(answerDestination, answer) {
+    answerDestination.textContent = answer;
+}
+
+/**
+ * Generate an answer and update the answer destination.
+ * 
+ * @param {element} answerDestination
  */
 function generateAnswer(answerDestination) {
-    const randomIndex = randomChoice(config.textAnswers.length);
-    let answer = getTextLineFromIndex(randomIndex);
+    const answer = selectRandomAnswer();
     playAnswerAudio(answer);
-
-    answerDestination.textContent = answer;    
+    updateAnswerDestination(answerDestination, answer);
 }
 
 /**

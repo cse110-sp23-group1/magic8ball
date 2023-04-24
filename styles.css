@@ -29,11 +29,9 @@ h1 {
   margin-bottom: 1.5rem;
   background-color: whitesmoke;
 }
-
 #question:active {
   border: black;
 }
-
 #submit {
   padding: 1rem 2rem;
   font-size: 1.2rem;
@@ -47,6 +45,15 @@ h1 {
 
 #submit:hover {
   background-color: #d77d00;
+}
+
+#answer {
+  font-family: 'Cantarell', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #EF8B00;
+  margin-top: 1.5rem;
+  animation: appear 0.5s ease;
 }
 
 body {
