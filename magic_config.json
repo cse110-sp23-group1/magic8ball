@@ -21,6 +21,8 @@
         "Very doubtful"
       ],
 
+    "defaultCharacter": "johnny",
+
     "characters": {
         "johnny": {
             "image": "./media/characters/johnny.png",

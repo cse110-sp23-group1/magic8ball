@@ -3,11 +3,10 @@
  * includes shaking, providing answers in both text and voice
  */
 
-let config;
-let shakeTransformations;
+let config; // loaded from magic_config.json in fetchConfig
 
-let currentCharacter;
-let answerAudioPlaying = null;
+let currentCharacter; // the currently selected character
+let answerAudioPlaying = null; // the currently playing answer audio line
 
 /**
  * populates config with values from the given json
@@ -33,20 +32,21 @@ function getAudio(where){
  * looks in config for the (d)elay, translate(x) and (r) rotate values 
  * for the transform, then maps them into transformations
  */
-function loadTransformations(){
-    shakeTransformations = 
-        config.shakeTransformValues.map(([d, x, r]) => 
-            ({ t: `translateX(${x}px) rotate(${r}deg)`, d })
-        );
+function getTransformations(){
+    return config.shakeTransformValues.map(([d, x, r]) => 
+                ({ t: `translateX(${x}px) rotate(${r}deg)`, d }));
 }
 
 /**
- * sets the magic-ball image to the provided character,
- * or johnny if no character is provided
+ * updates currentCharacter with provided, or default
+ * sets magic-ball to character image
+ * 
+ * @param {string} character (which to get)
  */
-function setCharacter(character='johnny'){
-    currentCharacter = character;
-    document.getElementById('magic-ball').src = config.characters[character].image;
+function setCharacter(character){
+    currentCharacter = (character) ? character : config.defaultCharacter;
+
+    document.getElementById('magic-ball').src = config.characters[currentCharacter].image;
 }
 
 /**
@@ -95,8 +95,8 @@ function setTimeoutForTransform(element, transform, duration) {
  * @param {Array} shakeTransformations (how to shake)
  * @returns {Array<Promise>} (promises to do those shakes)
  */
-function generateShakePromises(element, shakeTransformations) {
-    return shakeTransformations.map(({ t, d }) =>
+function generateShakePromises(element) {
+    return getTransformations().map(({ t, d }) =>
         setTimeoutForTransform(element, t, d)
     );
 }
@@ -108,7 +108,7 @@ function generateShakePromises(element, shakeTransformations) {
  * @returns a promise that all the shaking will be done
  */
 async function promiseShakeTransformations(element) {
-    const shakePromises = generateShakePromises(element, shakeTransformations);
+    const shakePromises = generateShakePromises(element);
     return Promise.all(shakePromises);
 }
 
@@ -265,5 +265,4 @@ export async function activateMagicBall(ball, answerDestination) {
 export async function magicBallSetup (configLocation){
     await fetchConfig(configLocation);
     setCharacter();
-    loadTransformations();
 }
