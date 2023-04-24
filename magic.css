@@ -1,0 +1,11 @@
+#answer {
+    font-family: 'Cantarell', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #EF8B00;
+    padding-bottom: 10px;
+}
+
+.easyRider {
+    transition: transform 200ms ease-in-out;
+}

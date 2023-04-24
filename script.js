@@ -1,6 +1,6 @@
 import { activateMagicBall, magicBallSetup } from './magic8ball.js';
 
-magicBallSetup();
+await magicBallSetup("magic_config.json");
 
 const answerDestination = document.getElementById('answer');
 const magicBall = document.getElementById('magic-ball');
