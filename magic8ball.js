@@ -54,22 +54,45 @@ function loadTransformations(shakeTransformArray){
 }
 
 /**
- * Given a thing to shake, starts shaking and promises to finish
+ * sets up / cleans up for shaking in promiseShakeTransformations
  * 
- * @param {element} element (expected to be the 8 ball object)
- * @returns a promise that all the shaking will be done
+ * 'easyRider' is in magic.css
+ * 
+ * @param {element} element (to be set/reset for shaking)
+ */
+function shakeSetup(element){
+    element.classList.add('easyRider');
+}
+function shakeTeardown(element){
+    element.classList.remove('easyRider');
+    element.style.removeProperty('transform');
+}
+
+/**
+ * helper: given a transformation and an element to apply it to,
+ * returns a promise to resolve when the transition completes
+ * 
+ * @param {element} element (what to apply the shake to)
+ * @param {string} t (the transform values to use)
+ * @returns {promise} (a promise to resolve once the shake transition ends)
+ */
+const applyTransitionTranform = (element, t) => {
+    return new Promise((resolve) => {
+        element.addEventListener("transitionend", resolve, { once: true });
+        element.style.transform = t;
+    });
+}
+
+/**
+ * given an element, shakes it
+ * 
+ * @param {element} element (what to shake)
+ * @returns a promise resolving when transforms complete
  */
 async function promiseShakeTransformations(element) {
-    const shakePromises = 
-        shakeTransformations.map(({ t, d }) =>
-            new Promise((resolve) => {
-                setTimeout(() => {
-                    element.style.transform = t;
-                    resolve();
-                }, d);
-            })
-        )
-    return Promise.all(shakePromises);
+    for (const { t } of shakeTransformations) {
+      await applyTransitionTranform(element, t);
+    }
 }
 
 /**
@@ -113,6 +136,17 @@ function generateAnswer(answerDestination) {
     answerDestination.textContent = answerResult;    
 }
 
+/**
+ * performShake manages conditions for the actual shaking events
+ * 
+ * @param {element} element (what to shake)
+ */
+async function performShake(element){
+    shakeSetup(element);
+    await promiseShakeTransformations(element);    
+    shakeTeardown(element);
+}
+
 /** 
  * exported to give ball activation command control
  * 
@@ -123,7 +157,7 @@ function generateAnswer(answerDestination) {
  * @param {node} answerDestination (where to send the answer text)
  */
 export async function activateMagicBall(ball, answerDestination) {
-    await promiseShakeTransformations(ball);    
+    await performShake(ball);
     generateAnswer(answerDestination);
 }
 
