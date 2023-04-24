@@ -89,10 +89,10 @@ function setTimeoutForTransform(element, transform, duration) {
 }
 
 /**
- * Generate an array of shake promises.
+ * returns transformation shake promises by getting the transforms
+ * and applying their timeouts
  * 
  * @param {element} element (a thing to promise to shake)
- * @param {Array} shakeTransformations (how to shake)
  * @returns {Array<Promise>} (promises to do those shakes)
  */
 function generateShakePromises(element) {
