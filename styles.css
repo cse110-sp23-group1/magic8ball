@@ -63,3 +63,7 @@ body {
 ::placeholder {
   color: black;
 }
+
+input {
+  outline: none;
+}
