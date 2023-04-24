@@ -1,0 +1,67 @@
+{
+    "textAnswers": [
+        "It is certain",
+        "It is decidedly so",
+        "Without a doubt",
+        "Yes, definitely",
+        "You may rely on it",
+        "As I see it, yes",
+        "Most likely",
+        "Outlook good",
+        "Yes",
+        "Signs point to yes",
+        "Reply hazy, try again",
+        "Ask again later",
+        "Better not tell you now",
+        "Cannot predict now",
+        "Concentrate and ask again",
+        "Don't count on it",
+        "Outlook not so good",
+        "My sources say no",
+        "Very doubtful"
+      ],
+
+    "defaultCharacter": "johnny",
+
+    "characters": {
+        "johnny": {
+            "image": "./media/characters/johnny.png",
+            "voiceLines": {
+                "It is certain": "./audio/answers/johnny/It is certain.mp3",
+                "It is decidedly so": "./audio/answers/johnny/It is decidedly so.mp3",
+                "Without a doubt": "./audio/answers/johnny/Without a doubt.mp3",
+                "Yes, definitely": "./audio/answers/johnny/Yes, definitely.mp3",
+                "You may rely on it": "./audio/answers/johnny/You may rely on it.mp3",
+                "As I see it, yes": "./audio/answers/johnny/As I see it, yes.mp3",
+                "Most likely": "./audio/answers/johnny/Most likely.mp3",
+                "Outlook good": "./audio/answers/johnny/Outlook good.mp3",
+                "Yes": "./audio/answers/johnny/Yes.mp3",
+                "Signs point to yes": "./audio/answers/johnny/Signs point to yes.mp3",
+                "Reply hazy, try again": "./audio/answers/johnny/Reply hazy, try again.mp3",
+                "Ask again later": "./audio/answers/johnny/Ask again later.mp3",
+                "Better not tell you now": "./audio/answers/johnny/Better not tell you now.mp3",
+                "Cannot predict now": "./audio/answers/johnny/Cannot predict now.mp3",
+                "Concentrate and ask again": "./audio/answers/johnny/Concentrate and ask again.mp3",
+                "Don't count on it": "./audio/answers/johnny/Don't count on it.mp3",
+                "Outlook not so good": "./audio/answers/johnny/Outlook not so good.mp3",
+                "My sources say no": "./audio/answers/johnny/My sources say no.mp3",
+                "Very doubtful": "./audio/answers/johnny/Very doubtful.mp3"
+              }
+        }
+    },
+
+    "shakeTransformValues": [
+      [0, 40, 40],
+      [150, -40, -40],
+      [300, 30, 30],
+      [450, -30, -30],
+      [600, 20, 20],
+      [750, -20, -20],
+      [900, 10, 10],
+      [1050, -10, -10],
+      [1200, 5, 5],
+      [1350, -5, -5],
+      [1750, 0, 0]
+    ]
+}
+  
