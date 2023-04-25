@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Magic 8 Ball</title>
+    <title>Johnny Magic Knows All</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32.png">
@@ -17,14 +18,16 @@
   <body>
     <div class="container">
       <h1>Johnny Magic</h1>
-      <img id="magic-ball" src="./media/johnny8ball_500x629.png" alt="Johnny 8 Ball">
-      <form name="questionForm">
-        <br><br><br><br>
-        <input type="text" id="question" placeholder="Ask your question..." onfocus="this.value=''">
+      <img id="magic-ball" alt="An image of a mystical fortune teller">
+      
+      <div id="answer">Hmm...</div>
+
+      <form name="questionForm" class="ask-submit-box">
+        <input type="text" id="question" placeholder=" Ask your question..." onfocus="this.value=''">
         <button id="submit" type="submit">Submit</button>
       </form>
-      <div id="answer"></div>
     </div>
+    
     <script type="module" src="script.js"></script>
   </body>
 </html>
