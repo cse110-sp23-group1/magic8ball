@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 2rem;
 }
 
 h1 {
@@ -17,7 +16,6 @@ h1 {
   width: 400px;
   height: 400px;
   object-fit: contain; /* resize image to fit its container */
-  margin-bottom: 1.5rem;
 }
 
 #question {
@@ -30,9 +28,11 @@ h1 {
   margin-bottom: 1.5rem;
   background-color: whitesmoke;
 }
+
 #question:active {
   border: black;
 }
+
 #submit {
   padding: 1rem 2rem;
   font-size: 1.2rem;
@@ -41,7 +41,6 @@ h1 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 #submit:hover {
@@ -49,12 +48,13 @@ h1 {
 }
 
 #answer {
+  height: 4rem;
   font-family: 'Cantarell', sans-serif;
   font-size: 2rem;
   font-weight: bold;
   color: #EF8B00;
   margin-top: 1.5rem;
-  animation: appear 0.5s ease;
+  animation: appear 2.5s ease;
 }
 
 body {
@@ -67,4 +67,15 @@ body {
 
 input {
   outline: none;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  };
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

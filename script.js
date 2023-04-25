@@ -8,6 +8,7 @@ const questionForm = document.forms['questionForm'];
 
 questionForm.addEventListener('submit', async function(event){
   event.preventDefault();
+  answerDestination.textContent = 'Hmm...'
   
   await activateMagicBall(magicBall, answerDestination);
 });
